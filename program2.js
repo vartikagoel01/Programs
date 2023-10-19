@@ -1,23 +1,45 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question('Enter a sentence: ', function(sentence) {
+  const reversedSentence = reverseWords(sentence);
+  console.log('Reversed Sentence:', reversedSentence);
+
+  rl.question('Enter numbers separated by spaces for sorting (e.g., 5 2 8 1 9 3): ', function(inputNumbers) {
+    const numbers = inputNumbers.split(' ').map(function(str) {
+      return parseInt(str);
+    });
+    const sortedDescending = sortDescending(numbers);
+    console.log('Sorted Descending:', sortedDescending);
+
+    rl.close();
+  });
+});
+
 function reverseWords(sentence) {
-    return sentence.split(/\s+/).map(reverseString).join(' ');
-   }
-   function reverseString(str) {
-    return str.split('').reverse().join('');
-   }
-   const inputSentence = prompt("Enter a sentence:");
-   const reversedSentence = reverseWords(inputSentence);
-   console.log("Reversed Sentence:", reversedSentence);
-   // B. Perform sorting of an array in descending order.
-   function descendingSort(arr) {
-    return arr.slice().sort((a, b) => b - a);
-   }
-   const inputArray = prompt("Enter an array of numbers separated by spaces (e.g., 5 2 9 1 5 6):")
-    .split(' ')
-    .map(Number);
-   if (Array.isArray(inputArray) && inputArray.every(Number.isFinite)) {
-    const sortedArray = descendingSort(inputArray);
-    console.log("Sorted Array in Descending Order:", sortedArray);
-   } else {
-    console.log("Invalid input. Please enter valid numbers separated by spaces.");
-   }
+  const words = sentence.split(' ');
+  const reversedWords = words.map(function(word) {
+    return reverseString(word);
+  });
+  return reversedWords.join(' ');
+}
+
+function reverseString(str) {
+  let reversed = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+  return reversed;
+}
+
+function sortDescending(arr) {
+  return arr.sort(function(a, b) {
+    return b - a;
+  });
+}
+
    

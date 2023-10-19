@@ -32,7 +32,7 @@ public class Main {
         Random random = new Random();
         for (int i = array.length - 1; i > 0; i--) {
             int j = random.nextInt(i + 1);
-            // Swap elements at i and j
+            
             int temp = array[i];
             array[i] = array[j];
             array[j] = temp;

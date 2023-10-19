@@ -76,7 +76,7 @@ public class Main {
             case 'M':
                 return 1000;
             default:
-                return 0; // Invalid Roman numeral
+                return 0; 
         }
     }
 
